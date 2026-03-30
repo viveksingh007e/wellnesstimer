@@ -141,9 +141,9 @@ async function startRun() {
         await noSleep.enable();
         console.log('NoSleep enabled');
         
-        await speakAndWait('Today is the great day. We will run for 10 minutes finally. Remeber the time we set this goal, today we will be an achiever. Take your time to get in position. We will start in 30 seconds. All the best!', 50);
+        await speakAndWait('Today is the great day. We will run for 11 minutes. This is our time and moment to enjoy !. Take your time to get in position. We will start in 30 seconds. All the best!', 50);
 		
-		await speakAndWait('Lets hit the road now! Run!', 240);
+		await speakAndWait('Lets hit the road now! Run!', 300);
         await speakAndWait('6 minutes remaining now', 120);
 		await speakAndWait('Continue for another 4 minutes', 60);
 		await speakAndWait('Just 3 minutes remaining now!', 60);
