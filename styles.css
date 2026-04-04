@@ -17,13 +17,13 @@ body {
 .exercise-btn {
     height: 130px;
     width: 130px;
-    background: linear-gradient(145deg, #16213e, #0f3460);
-    border: 1px solid rgba(255, 255, 255, 0.08);
+    background: linear-gradient(145deg, #2c4836, #2c4836);
+    border: 1px solid rgba(255, 255, 255, 0.1);
     border-radius: 28px;
     cursor: pointer;
     color: white;
     transition: transform 0.2s, box-shadow 0.2s;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
+    box-shadow: 4px 4px 12px rgba(0, 0, 0, 0.5), -2px -2px 8px rgba(255, 255, 255, 0.04);
 }
 
 .exercise-btn:hover {
@@ -43,7 +43,7 @@ body {
 }
 
 .exercise-btn .label {
-    color: #e2b714;
+    color: #ebc84c;
     font-weight: bold;
     font-size: 14px;
     letter-spacing: 0.5px;
