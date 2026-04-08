@@ -39,14 +39,14 @@ function startBellyExercise() {
     runExercise([
         ['Welcome dear! We will start belly exercise now. This will last just 8 minutes. Take your time to get in position. We will start in 10 seconds', 20],
         ['Are you ready now!', 5],
-        ['Lets start jumping for 2 minutes straight. Starting now!', 125],
-        ['Great! Relax now for 20 seconds', 30],
-        ['Lets start jumping for another 2 minutes. This is second set. Starting now!', 125],
-        ['Great! Relax now for 20 seconds', 30],
-        ['Lets start jumping for another 2 minutes. This is third set. Starting now!', 125],
-        ['Great! Relax now for 20 seconds', 30],
-        ['Lets start jumping for another 2 minutes. This is last set. Starting now!', 125],
+        ['Lets start standing knee raises for 2 minutes. Starting now!', 125],
+        ['Great! Relax now for 10 seconds', 12],
+        ['Lets start standing side bends for 2 minutes. Starting now!', 125],
+        ['Great! Relax now for 10 seconds', 12],
+        ['Lets start standing twists for 2 minutes. Starting now!', 125],
         ['Terrific Work! we have completed jumping exercise. See you again!', 0],
+        ['You can do additionally Glute Bridges, Modified Plank and Dead Bug Exercise',o],
+        
     ]);
 }
 
