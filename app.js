@@ -45,7 +45,7 @@ function startBellyExercise() {
         ['Great! Relax now for 10 seconds', 12],
         ['Lets start standing twists for 2 minutes. Starting now!', 125],
         ['Terrific Work! we have completed jumping exercise. See you again!', 0],
-        ['You can do additionally Glute Bridges, Modified Plank and Dead Bug Exercise',o],
+        ['You can do additionally Glute Bridges, Modified Plank and Dead Bug Exercise',0],
         
     ]);
 }
