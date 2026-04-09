@@ -37,7 +37,7 @@ function startEyeExercise() {
 
 function startBellyExercise() {
     runExercise([
-        ['Welcome dear! We will start belly exercise now. This will last just 8 minutes. Take your time to get in position. We will start in 10 seconds', 20],
+        ['Welcome dear! We will start belly exercise now. This will last just 6 minutes. Take your time to get in position. We will start in 10 seconds', 20],
         ['Lets start standing knee raises for 1.5 minutes. Starting now!', 95],
         ['Great! Relax now for 10 seconds', 12],
         ['Lets start standing side bends for 1.5 minutes. Starting now!', 95],
