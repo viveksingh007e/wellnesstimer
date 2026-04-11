@@ -1,8 +1,31 @@
 const noSleep = new NoSleep();
 
+function getEnGbVoice() {
+    const voices = speechSynthesis.getVoices();
+    return voices.find(v => v.lang === 'en-GB');
+}
+
 function speakAndWait(text, waitSeconds) {
-    speechSynthesis.speak(new SpeechSynthesisUtterance(text));
-    return new Promise(resolve => setTimeout(resolve, waitSeconds * 1000));
+    return new Promise(resolve => {
+        function speakWithVoice() {
+            const utterance = new SpeechSynthesisUtterance(text);
+            const enGbVoice = getEnGbVoice();
+            if (enGbVoice) {
+                utterance.voice = enGbVoice;
+            }
+            utterance.rate = 0.8; // slower pace
+            speechSynthesis.speak(utterance);
+            setTimeout(resolve, waitSeconds * 1000);
+        }
+        // If voices are not loaded yet, wait for them
+        if (speechSynthesis.getVoices().length === 0) {
+            speechSynthesis.onvoiceschanged = () => {
+                speakWithVoice();
+            };
+        } else {
+            speakWithVoice();
+        }
+    });
 }
 
 async function runExercise(routine) {
