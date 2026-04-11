@@ -2,7 +2,7 @@ const noSleep = new NoSleep();
 
 function getEnGbVoice() {
     const voices = speechSynthesis.getVoices();
-    return voices.find(v => v.lang === 'en-GB');
+    return voices.find(v => v.lang === 'hi-IN');
 }
 
 function speakAndWait(text, waitSeconds) {
@@ -13,7 +13,7 @@ function speakAndWait(text, waitSeconds) {
             if (enGbVoice) {
                 utterance.voice = enGbVoice;
             }
-            utterance.rate = 0.8; // slower pace
+            utterance.rate = 0.9; // slower pace
             speechSynthesis.speak(utterance);
             setTimeout(resolve, waitSeconds * 1000);
         }
@@ -44,58 +44,59 @@ async function runExercise(routine) {
 
 function startEyeExercise() {
     runExercise([
-        ['Welcome dear! We will start eyes exercise now. This will last just 9 minutes. Sit comfortably and get in position', 25],
-        ['We will start with rolling the eyes gently for 1.5 minute', 95],
-        ['Perfect! The rolling is complete now. Relax!', 15],
-        ['Now, Gently massage your eyes sockets for 1.5 minute.', 95],
-        ['Perfect! The massage is complete now. Relax!', 15],
-        ['Now, pin your acupressure points for 2 minutes', 125],
-        ['Perfect! The acupressure is complete now. Relax!', 15],
-        ['Awesome So far! Now focus adjustment for near and far points for 3 minutes. Starting now!', 127],
-        ['Great! Relax now', 10],
-        ['continue for another 1 minutes', 65],
-        ['Terrific Work! we have completed all eye exercises. See you again!', 0],
+
+        ['स्वागत है! हम अब आँखों के व्यायाम शुरू करेंगे। यह केवल 9 मिनट का होगा। आराम से बैठें और सही स्थिति में आ जाएँ', 25],
+        ['हम डेढ़ मिनट के लिए आँखों को हल्के से घुमाने से शुरुआत करेंगे', 95],
+        ['बहुत बढ़िया! अब घुमाना पूरा हो गया है। आराम करें!', 15],
+        ['अब डेढ़ मिनट के लिए अपनी आँखों की सॉकेट्स को हल्के से मालिश करें।', 95],
+        ['बहुत बढ़िया! अब मालिश पूरी हो गई है। आराम करें!', 15],
+        ['अब 2 मिनट के लिए अपनी एक्यूप्रेशर पॉइंट्स को दबाएँ', 125],
+        ['बहुत बढ़िया! अब एक्यूप्रेशर पूरा हो गया है। आराम करें!', 15],
+        ['अब तक शानदार! अब 3 मिनट के लिए पास और दूर के बिंदुओं पर ध्यान समायोजन करें। अभी शुरू कर रहे हैं!', 127],
+        ['बहुत अच्छा! अब आराम करें', 10],
+        ['एक और 1 मिनट के लिए जारी रखें', 65],
+        ['शानदार कार्य! हमने सभी आँखों के व्यायाम पूरे कर लिए हैं। फिर मिलेंगे!', 0]
+
     ]);
 }
 
 function startBellyExercise() {
     runExercise([
-        ['Welcome dear! We will start belly exercise now. This will last just 6 minutes. Take your time to get in position. We will start in 10 seconds', 20],
-        ['Lets start standing knee raises for 1.5 minutes. Starting now!', 95],
-        ['Great! Relax now for 10 seconds', 12],
-        ['Lets start standing side bends for 1.5 minutes. Starting now!', 95],
-        ['Great! Relax now for 10 seconds', 12],
-        ['Lets start standing twists for 1.5 minutes. Starting now!', 95],
-        ['Terrific Work! we have completed jumping exercise. See you again!', 0],
-        ['You can do additionally Glute Bridges, Modified Plank and Dead Bug Exercise',0],
-        
+        ['स्वागत है! हम अब कोर के व्यायाम शुरू करेंगे। यह केवल 6 मिनट का होगा। सही स्थिति में आने के लिए अपना समय लें। हम 10 सेकंड में शुरू करेंगे', 20],
+        ['आइए डेढ़ मिनट के लिए खड़े होकर घुटने उठाने वाला व्यायाम शुरू करें। अभी शुरू करते हैं!', 95],
+        ['बहुत बढ़िया! अब 10 सेकंड के लिए आराम करें', 12],
+        ['आइए डेढ़ मिनट के लिए खड़े होकर साइड बेंड्स शुरू करें। अभी शुरू करते हैं!', 95],
+        ['बहुत बढ़िया! अब 10 सेकंड के लिए आराम करें', 12],
+        ['आइए डेढ़ मिनट के लिए खड़े होकर ट्विस्ट्स शुरू करें। अभी शुरू करते हैं!', 95],
+        ['शानदार कार्य! हमने सभी कोर व्यायाम पूरे कर लिए हैं। फिर मिलेंगे!', 0],
+        ['आप अतिरिक्त रूप से ग्लूट ब्रिजेस, मॉडिफाइड प्लैंक और डेड बग व्यायाम कर सकते हैं', 0]
     ]);
 }
 
 function startYog() {
     runExercise([
-        ['Welcome dear! We will start Yoga now. This will last just 12 minutes. Take your time to get in position. We will start in 10 seconds', 20],
-        ['Lets start head shine for 5 minutes. Starting now!', 125],
-        ['Great! Relax now for 10 seconds', 12],
-        ['Continue for another 3 minutes', 125],
-        ['Last 1 minute remaining now!', 65],
-        ['Perfect! head shine is complete now. Relax!', 20],
-        ['Lets start Nose breathing for 2 minutes. Starting now!', 125],
-        ['Perfect! Nose breathing is complete now. Relax!', 20],
-        ['Lets rub nails for 2 minutes. Starting now!', 125],
-        ['Terrific Work! we have completed Yoga. See you again!', 0],
+        ['स्वागत है! हम अब योग शुरू करेंगे। यह केवल 12 मिनट का होगा। सही स्थिति में आने के लिए अपना समय लें। हम 10 सेकंड में शुरू करेंगे', 20],
+        ['आइए 5 मिनट के लिए कपालभाति शुरू करें। अभी शुरू करते हैं!', 125],
+        ['बहुत बढ़िया! अब 10 सेकंड के लिए आराम करें', 12],
+        ['अगले 3 मिनट तक जारी रखें', 125],
+        ['अब अंतिम 1 मिनट शेष है!', 65],
+        ['परफेक्ट! अब कपालभाति पूरी हो गई है। आराम करें!', 20],
+        ['आइए 2 मिनट के लिए नासिका श्वसन शुरू करें। अभी शुरू करते हैं!', 125],
+        ['परफेक्ट! नासिका श्वसन अब पूरा हो गया है। आराम करें!', 20],
+        ['आइए 2 मिनट के लिए नाखून रगड़ना शुरू करें। अभी शुरू करते हैं!', 125],
+        ['शानदार कार्य! हमने योग पूरा कर लिया है। फिर मिलेंगे!', 0]
     ]);
 }
 
 function startRun() {
     runExercise([
-        ['Today is the great day. We will run for 12 minutes. This is our time and moment to enjoy. We will start in 30 seconds. All the best!', 50],
-        ['Lets hit the road now! Run!', 360],
-        ['6 minutes remaining now', 120],
-        ['Continue for another 4 minutes', 60],
-        ['Just 3 minutes remaining now!', 60],
-        ['Just 2 minutes remaining now!', 60],
-        ['Last 1 minute to run. Come on!', 60],
-        ['Terrific! Perfect! Run is complete now. Relax! See you tommorow same time!', 0],
+        ['आज का दिन बहुत शानदार है। हम 13 मिनट तक दौड़ेंगे। यह हमारा पल है और आनंद लेने का क्षण है। हम 30 सेकंड में शुरू करेंगे। शुभकामनाएँ!', 50],
+        ['आइए अब सड़क पर उतरें! दौड़िए!', 360],
+        ['अब 6 मिनट शेष हैं', 120],
+        ['अगले 4 मिनट तक जारी रखें', 60],
+        ['अब सिर्फ 3 मिनट शेष हैं!', 60],
+        ['अब सिर्फ 2 मिनट शेष हैं!', 60],
+        ['अंतिम 1 मिनट शेष है!', 60],
+        ['शानदार! परफेक्ट! दौड़ अब पूरी हो गई है। आराम करें! कल इसी समय मिलेंगे!', 0]
     ]);
 }
