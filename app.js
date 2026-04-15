@@ -18,13 +18,20 @@ function speakAndWait(text, waitSeconds) {
             setTimeout(resolve, waitSeconds * 1000);
         }
         // If voices are not loaded yet, wait for them
-        if (speechSynthesis.getVoices().length === 0) {
-            speechSynthesis.onvoiceschanged = () => {
-                speakWithVoice();
-            };
+        // if (speechSynthesis.getVoices().length === 0) {
+        //     speechSynthesis.onvoiceschanged = () => {
+        //         speakWithVoice();
+        //     };
+        // } else {
+        //     speakWithVoice();
+        // }
+        
+    if (speechSynthesis.getVoices().length === 0) {
+            speechSynthesis.onvoiceschanged = speakWithVoice;
         } else {
             speakWithVoice();
         }
+
     });
 }
 
