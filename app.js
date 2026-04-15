@@ -1,29 +1,28 @@
 const noSleep = new NoSleep();
 
-function getEnGbVoice() {
+let hindiVoice = null;
+
+function loadVoices() {
     const voices = speechSynthesis.getVoices();
-    return voices.find(v => v.lang === 'hi-IN');
+    hindiVoice = voices.find(v => v.lang === 'hi-IN');
 }
+
+speechSynthesis.onvoiceschanged = loadVoices;
+loadVoices();
 
 function speakAndWait(text, waitSeconds) {
     return new Promise(resolve => {
-        function speakWithVoice() {
-            const utterance = new SpeechSynthesisUtterance(text);
-            const enGbVoice = getEnGbVoice();
-            if (enGbVoice) {
-                utterance.voice = enGbVoice;
-            }
-            utterance.rate = 0.9; // slower pace
-            speechSynthesis.speak(utterance);
+        speechSynthesis.cancel(); // prevent queue buildup
+        const utterance = new SpeechSynthesisUtterance(text);
+        if (hindiVoice) {
+            utterance.voice = hindiVoice;
+        }
+        utterance.rate = 0.9;
+        utterance.onend = () => {
             setTimeout(resolve, waitSeconds * 1000);
-        }
-        
-    if (speechSynthesis.getVoices().length === 0) {
-            speechSynthesis.onvoiceschanged = speakWithVoice;
-        } else {
-            speakWithVoice();
-        }
-
+        };
+        utterance.onerror = () => resolve();
+        speechSynthesis.speak(utterance);
     });
 }
 
