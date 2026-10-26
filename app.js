@@ -425,6 +425,31 @@ async function runExercise(routine, hooks = {}) {
     }
 }
 
+function startPushUp() {
+    // Final countdown prompt has wait 0 so deadline resets and countdown lag isn't caught up by rushing count 1.
+    const countdown = [['5', 1], ['4', 1], ['3', 1], ['2', 1], ['1', 0]];
+    const reps = n => Array.from({ length: n }, (_, i) => [String(i + 1), 4]);
+
+    runExercise([
+        ['Get ready for 1st round', 5],
+        ...countdown,
+        ['Start', 4],
+        ...reps(9),
+        ['Relax, Prepare for 2nd round', 60],
+
+        ...countdown,
+        ['Start', 4],
+        ...reps(8),
+        ['Relax, Prepare for last round', 60],
+
+        ...countdown,
+        ['Start', 4],
+        ...reps(7),
+
+        ['Push-ups complete. Well done!', 0]
+    ]);
+}
+
 function startEyeExercise() {
     runExercise([
 
@@ -470,58 +495,57 @@ function startYog() {
 
 function startHang() {
     runExercise([
-        ['तैयार हो जाइए।', 4],
+        ['Get ready for 1st round', 5],
         ['5', 1],
         ['4', 1],
         ['3', 1],
         ['2', 1],
         ['1', 1],
-        ['शुरू', 0],
+        
 
-        ['पहला राउंड। 30 सेकंड', 5],
+        ['Start', 5],
         ['5', 5],
         ['10', 5],
         ['15', 5],
         ['20', 5],
         ['25', 5],
-        ['राउंड पूरा। आराम करें।', 30],
+        ['Relax, Prepare for 2nd round', 30],
 
         ['5', 1],
         ['4', 1],
         ['3', 1],
         ['2', 1],
         ['1', 1],
-        ['शुरू', 0],
+        
 
-        ['दूसरा राउंड। 20 सेकंड', 5],
+        ['Start', 5],
         ['5', 5],
         ['10', 5],
         ['15', 5],
-        ['राउंड पूरा। आराम करें।', 30],
+        ['Relax, Prepare for 3rd round', 30],
 
         ['5', 1],
         ['4', 1],
         ['3', 1],
         ['2', 1],
         ['1', 1],
-        ['शुरू', 0],
+        
 
-        ['तीसरा राउंड। 15 सेकंड', 5],
+        ['Start', 5],
         ['5', 5],
         ['10', 5],
-        ['राउंड पूरा। आराम करें।', 30],
+        ['Relax, Prepare for last round', 30],
 
         ['5', 1],
         ['4', 1],
         ['3', 1],
         ['2', 1],
         ['1', 1],
-        ['शुरू', 0],
 
-        ['चौथा राउंड। 10 सेकंड', 5],
+        ['Start', 5],
         ['5', 5],
 
-        ['बार हैंग पूरा। बहुत बढ़िया!', 0]
+        ['Pull-up bar hang complete. Well done!', 0]
     ]);
 }
 
