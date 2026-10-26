@@ -379,18 +379,22 @@ function loadVoices() {
 speechSynthesis.onvoiceschanged = loadVoices;
 loadVoices();
 
-function speakAndWait(text, waitSeconds) {
-    return new Promise(resolve => {
-        speechSynthesis.cancel(); // prevent queue buildup
+function speakAndWait(text, deadline) {
+    return new Promise((resolve, reject) => {
         const utterance = new SpeechSynthesisUtterance(text);
         if (hindiVoice) {
             utterance.voice = hindiVoice;
         }
         utterance.rate = 0.9;
         utterance.onend = () => {
-            setTimeout(resolve, waitSeconds * 1000);
+            const remaining = deadline - performance.now();
+            if (remaining <= 0) {
+                resolve();
+            } else {
+                setTimeout(resolve, remaining);
+            }
         };
-        utterance.onerror = () => resolve();
+        utterance.onerror = event => reject(new Error('Speech failed: ' + event.error));
         speechSynthesis.speak(utterance);
     });
 }
@@ -401,8 +405,14 @@ async function runExercise(routine, hooks = {}) {
             await hooks.onStart();
         }
         await noSleep.enable();
+        let deadline = performance.now();
         for (const [text, wait] of routine) {
-            await speakAndWait(text, wait);
+            deadline += wait * 1000;
+            await speakAndWait(text, deadline);
+            // Zero-length prompts are transitions that finish before the next timed phase.
+            if (wait === 0) {
+                deadline = performance.now();
+            }
         }
     } catch (error) {
         console.error('Error:', error);
@@ -444,7 +454,7 @@ function startBellyExercise() {
 function startYog() {
     runExercise([
 
-        ['अब योग शुरू करेंगे। सही स्थिति में आने के लिए अपना समय लें। हम दस सेकंड में शुरू करेंगे', 3], 
+        ['अब योग शुरू करेंगे। सही स्थिति में आने के लिए अपना समय लें। हम दस सेकंड में शुरू करेंगे', 3],
         ['आइए पाँच मिनट के लिए कपालभाति प्राणायाम शुरू करें।', 305],
         ['बहुत बढ़िया! अब कपालभाति प्राणायाम पूरी हो गई है। आराम करें!', 20],
         ['आइए दो मिनट के लिए अनुलोम विलोम प्राणायाम शुरू करें।', 125],
@@ -453,8 +463,65 @@ function startYog() {
         ['आइए डेढ़ मिनट के लिए मार्जारी आसन शुरू करें। अभी शुरू करते हैं!', 95],
         ['आइए डेढ़ मिनट के लिए बद्ध कोणासन शुरू करें। अभी शुरू करते हैं!', 95],
         ['शानदार! हमने योग पूरा कर लिया है। फिर मिलेंगे!', 0]
-        
 
+
+    ]);
+}
+
+function startHang() {
+    runExercise([
+        ['तैयार हो जाइए।', 4],
+        ['5', 1],
+        ['4', 1],
+        ['3', 1],
+        ['2', 1],
+        ['1', 1],
+        ['शुरू', 0],
+
+        ['पहला राउंड। 30 सेकंड', 5],
+        ['5', 5],
+        ['10', 5],
+        ['15', 5],
+        ['20', 5],
+        ['25', 5],
+        ['राउंड पूरा। आराम करें।', 30],
+
+        ['5', 1],
+        ['4', 1],
+        ['3', 1],
+        ['2', 1],
+        ['1', 1],
+        ['शुरू', 0],
+
+        ['दूसरा राउंड। 20 सेकंड', 5],
+        ['5', 5],
+        ['10', 5],
+        ['15', 5],
+        ['राउंड पूरा। आराम करें।', 30],
+
+        ['5', 1],
+        ['4', 1],
+        ['3', 1],
+        ['2', 1],
+        ['1', 1],
+        ['शुरू', 0],
+
+        ['तीसरा राउंड। 15 सेकंड', 5],
+        ['5', 5],
+        ['10', 5],
+        ['राउंड पूरा। आराम करें।', 30],
+
+        ['5', 1],
+        ['4', 1],
+        ['3', 1],
+        ['2', 1],
+        ['1', 1],
+        ['शुरू', 0],
+
+        ['चौथा राउंड। 10 सेकंड', 5],
+        ['5', 5],
+
+        ['बार हैंग पूरा। बहुत बढ़िया!', 0]
     ]);
 }
 
