@@ -426,24 +426,24 @@ async function runExercise(routine, hooks = {}) {
 }
 
 function startPushUp() {
-    // Final countdown prompt has wait 0 so deadline resets and countdown lag isn't caught up by rushing count 1.
-    const countdown = [['5', 1], ['4', 1], ['3', 1], ['2', 1], ['1', 0]];
-    const reps = n => Array.from({ length: n }, (_, i) => [String(i + 1), 4]);
+    // 'Go' has wait 0 so the schedule resets there: count 1 follows immediately, then a constant gap.
+    const countdown = [['5', 1], ['4', 1], ['3', 1], ['2', 1], ['1', 1]];
+    const reps = n => Array.from({ length: n }, (_, i) => [String(i + 1), 3.5]);
 
     runExercise([
         ['Get ready for 1st round', 5],
         ...countdown,
-        ['Start', 4],
+        ['Go', 0],
         ...reps(9),
         ['Relax, Prepare for 2nd round', 60],
 
         ...countdown,
-        ['Start', 4],
+        ['Go', 0],
         ...reps(8),
         ['Relax, Prepare for last round', 60],
 
         ...countdown,
-        ['Start', 4],
+        ['Go', 0],
         ...reps(7),
 
         ['Push-ups complete. Well done!', 0]
