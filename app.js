@@ -433,17 +433,17 @@ function startPushUp() {
     runExercise([
         ['Get ready for 1st round', 5],
         ...countdown,
-        ['Go', 0],
+        ['Go!', 0],
         ...reps(9),
         ['Relax, Prepare for 2nd round', 60],
 
         ...countdown,
-        ['Go', 0],
+        ['Go!', 0],
         ...reps(8),
         ['Relax, Prepare for last round', 60],
 
         ...countdown,
-        ['Go', 0],
+        ['Go!', 0],
         ...reps(7),
 
         ['Push-ups complete. Well done!', 0]
@@ -503,7 +503,7 @@ function startHang() {
         ['1', 1],
         
 
-        ['Start', 5],
+        ['Go!', 5],
         ['5', 5],
         ['10', 5],
         ['15', 5],
@@ -518,7 +518,7 @@ function startHang() {
         ['1', 1],
         
 
-        ['Start', 5],
+        ['Go!', 5],
         ['5', 5],
         ['10', 5],
         ['15', 5],
@@ -531,7 +531,7 @@ function startHang() {
         ['1', 1],
         
 
-        ['Start', 5],
+        ['Go!', 5],
         ['5', 5],
         ['10', 5],
         ['Relax, Prepare for last round', 30],
@@ -542,7 +542,7 @@ function startHang() {
         ['2', 1],
         ['1', 1],
 
-        ['Start', 5],
+        ['Go!', 5],
         ['5', 5],
 
         ['Pull-up bar hang complete. Well done!', 0]
