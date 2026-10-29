@@ -373,7 +373,15 @@ function finalizeRunDistanceTracking() {
 
 function loadVoices() {
     const voices = speechSynthesis.getVoices();
-    hindiVoice = voices.find(v => v.lang === 'hi-IN');
+
+    // hindiVoice = voices.find(v => v.lang === 'hi-IN');
+    hindiVoice =
+        voices.find(v => v.name.includes('Google हिन्दी')) ||
+        voices.find(v => v.name.includes('Microsoft Heera')) ||
+        voices.find(v => v.name.includes('Microsoft Swara')) ||
+        voices.find(v => v.lang === 'hi-IN');
+
+    console.log('Selected voice:', hindiVoice?.name);
 }
 
 speechSynthesis.onvoiceschanged = loadVoices;
@@ -385,7 +393,9 @@ function speakAndWait(text, deadline) {
         if (hindiVoice) {
             utterance.voice = hindiVoice;
         }
-        utterance.rate = 0.9;
+        utterance.rate = 0.85;
+        utterance.pitch = 1.0;     // natural pitch
+        utterance.volume = 1.0;
         utterance.onend = () => {
             const remaining = deadline - performance.now();
             if (remaining <= 0) {
@@ -431,23 +441,24 @@ function startPushUp() {
     const reps = n => Array.from({ length: n }, (_, i) => [String(i + 1), 3.5]);
 
     runExercise([
-        ['Get ready for 1st round', 5],
+        ['पहले राउंड के लिए तैयार हो जाइए', 5],
         ...countdown,
-        ['Go!', 0],
+        ['शुरू करें!', 0],
         ...reps(9),
-        ['Relax, Prepare for 2nd round', 60],
+        ['आराम करें। दूसरे राउंड की तैयारी करें', 60],
 
         ...countdown,
-        ['Go!', 0],
+        ['शुरू करें!', 0],
         ...reps(8),
-        ['Relax, Prepare for last round', 60],
+        ['आराम करें। अंतिम राउंड की तैयारी करें', 60],
 
         ...countdown,
-        ['Go!', 0],
+        ['शुरू करें!', 0],
         ...reps(7),
 
-        ['Push-ups complete. Well done!', 0]
+        ['पुश-अप्स पूरे हुए। बहुत बढ़िया!', 0]
     ]);
+
 }
 
 function startEyeExercise() {
@@ -495,7 +506,7 @@ function startYog() {
 
 function startHang() {
     runExercise([
-        ['Get ready for 1st round', 5],
+        ['पहले राउंड के लिए तैयार हो जाइए', 5],
         ['5', 1],
         ['4', 1],
         ['3', 1],
@@ -503,13 +514,13 @@ function startHang() {
         ['1', 1],
 
 
-        ['Go!', 5],
+        ['शुरू करें!', 5],
         ['5', 5],
         ['10', 5],
         ['15', 5],
         ['20', 5],
         ['25', 5],
-        ['Relax, Prepare for 2nd round', 30],
+        ['आराम करें। दूसरे राउंड की तैयारी करें', 30],
 
         ['5', 1],
         ['4', 1],
@@ -518,11 +529,11 @@ function startHang() {
         ['1', 1],
 
 
-        ['Go!', 5],
+        ['शुरू करें!', 5],
         ['5', 5],
         ['10', 5],
         ['15', 5],
-        ['Relax, Prepare for 3rd round', 30],
+        ['आराम करें। तीसरे राउंड की तैयारी करें', 30],
 
         ['5', 1],
         ['4', 1],
@@ -531,10 +542,10 @@ function startHang() {
         ['1', 1],
 
 
-        ['Go!', 5],
+        ['शुरू करें!', 5],
         ['5', 5],
         ['10', 5],
-        ['Relax, Prepare for last round', 30],
+        ['आराम करें। अंतिम राउंड की तैयारी करें', 30],
 
         ['5', 1],
         ['4', 1],
@@ -542,29 +553,29 @@ function startHang() {
         ['2', 1],
         ['1', 1],
 
-        ['Go!', 5],
+        ['शुरू करें!', 5],
         ['5', 5],
 
-        ['Pull-up bar hang complete. Well done!', 0]
+        ['बार हैंग पूरा हुआ। बहुत बढ़िया!', 0]
     ]);
 }
 
 function startRun() {
     runExercise([
 
-        ['३० सेकंड में शुरू करेंगे।', 45],
+        ['30 सेकंड में शुरू करेंगे।', 45],
         ['आरंभ करते हैं!', 60],
-        ['1 मिनट', 240],
-        ['5 मिनट', 300],
-        ['10 मिनट', 300],
-        ['15 मिनट', 300],
-        ['20 मिनट', 300],
-        ['25 मिनट', 300],
-        ['30 मिनट', 300],
-        ['35 मिनट', 300],
-        ['40 मिनट', 300],
+        ['टाइमर चल रहा है। जारी रखें।', 240],
+        ['5 मिनट पूरे हो गए हैं। बहुत बढ़िया!', 300],
+        ['10 मिनट पूरे हो गए हैं। अपनी गति बनाए रखें।', 300],
+        ['15 मिनट पूरे हो गए हैं।', 300],
+        ['20 मिनट पूरे हो गए हैं। शानदार!', 300],
+        ['25 मिनट पूरे हो गए हैं।', 300],
+        ['30 मिनट पूरे हो गए हैं। आधा घंटा पूरा।', 300],
+        ['35 मिनट पूरे हो गए हैं।', 300],
+        ['40 मिनट पूरे हो गए हैं।', 300],
 
-        ['45 मिनट । अपनी उपलब्धियों में इसे दर्ज करें।', 0]
+        ['45 मिनट पूरे हो गए हैं। दौड़ समाप्त। अपनी उपलब्धियों में इसे दर्ज करें।', 0]
 
     ], {
         onStart: startRunDistanceTracking,
