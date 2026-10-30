@@ -218,10 +218,11 @@ body.route-map-overlay-open {
 }
 
 .exercise-btn {
-    width: clamp(130px, 19vw, 170px);
+    width: clamp(117px, 17.1vw, 153px);
     aspect-ratio: 1;
     border: 1px solid rgba(255, 255, 255, 0.22);
-    border-radius: 50%;
+    border-radius: 0;
+    clip-path: polygon(50% 2.4472%, 100% 38.7743%, 80.9017% 97.5528%, 19.0983% 97.5528%, 0% 38.7743%);
     cursor: pointer;
     color: var(--text-main);
     background:
@@ -261,7 +262,7 @@ body.route-map-overlay-open {
         0 8px 16px rgba(0, 0, 0, 0.4);
 }
 
-.exercise-btn:focus-visible {
+.exercise-btn:focus-visible .icon {
     outline: 3px solid rgba(77, 215, 196, 0.75);
     outline-offset: 2px;
 }
@@ -391,10 +392,9 @@ body.route-map-overlay-open {
     }
 
     .exercise-btn {
-        width: clamp(122px, 40vw, 156px);
+        width: clamp(110px, 36vw, 140px);
         min-height: 0;
         aspect-ratio: 1;
-        border-radius: 50%;
         padding: 0;
         gap: 7px;
         background:
@@ -429,7 +429,7 @@ body.route-map-overlay-open {
     }
 
     .exercise-btn {
-        width: min(42vw, 138px);
+        width: min(37.8vw, 124px);
         aspect-ratio: 1;
     }
 }
